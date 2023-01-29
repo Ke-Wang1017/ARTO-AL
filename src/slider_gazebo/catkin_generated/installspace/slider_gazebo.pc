@@ -1,0 +1,8 @@
+prefix=/home/robin/Documents/kewang/slider_bipedal/Gazebo/install
+
+Name: slider_gazebo
+Description: Description of slider_gazebo
+Version: 0.0.0
+Cflags: -I/home/robin/Documents/kewang/slider_bipedal/Gazebo/install/include
+Libs: -L/home/robin/Documents/kewang/slider_bipedal/Gazebo/install/lib 
+Requires: geometry_msgs roscpp rospy rviz std_msgs tf urdf xacro message_runtime

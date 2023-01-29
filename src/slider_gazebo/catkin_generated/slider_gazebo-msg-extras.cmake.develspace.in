@@ -1,0 +1,2 @@
+set(slider_gazebo_MESSAGE_FILES "/home/robin/Documents/kewang/slider_bipedal/Gazebo/src/slider_gazebo/msg/FloatArray.msg")
+set(slider_gazebo_SERVICE_FILES "")

@@ -1,0 +1,27 @@
+<launch>
+
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find time_slider_gazebo)/config/slider_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/time_slider_gazebo" args="joint_state_controller
+					  left_hip_pitch_torque_controller
+					  left_hip_slide_torque_controller
+            left_hip_roll_torque_controller
+            right_hip_pitch_torque_controller
+            right_hip_slide_torque_controller
+            right_hip_roll_torque_controller
+            left_ankle_pitch_torque_controller
+            left_ankle_roll_torque_controller
+            right_ankle_pitch_torque_controller
+            right_ankle_roll_torque_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/time_slider_gazebo/joint_states" />
+  </node>
+
+</launch>

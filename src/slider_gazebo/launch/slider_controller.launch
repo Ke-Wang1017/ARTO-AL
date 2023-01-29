@@ -1,0 +1,68 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="position" default="false"/>  
+  <arg name="torque" default="true"/>  
+  <arg name="mpc" default="false"/>  
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="node_start_delay" default="4.0" />  
+  <arg name="node_start_delay_2" default="5.0" /> 
+
+
+  <include file="$(find time_slider_gazebo)/launch/SLIDER_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find time_slider_gazebo)/urdf/SLIDER_ROTOGAIT_FOOT_pin.urdf'" /> 
+
+  <!-- Set use sim time true, so controller can synchronize with the simulation -->
+  <param name="use_sim_time" type="bool" value="true" />
+
+  <!-- Run a python script to send a service call to gazebo_ros to spawn a URDF robot --> 
+   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+   args="-urdf -model time_slider_gazebo -param robot_description -z 0.1 -J Left_Slide -0.1 -J Right_Slide -0.1"/>  
+
+  <!-- Run a python script to send a service call to gazebo_ros to spawn a URDF robot 
+   <node name="urdf_spawner_2" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+   args="-urdf -model time_slider_gazebo -param robot_description
+   -J left_hip_slide 0.75 -J right_hip_slide 0.75"
+    launch-prefix="bash -c 'sleep 4; $0 $@' "/> -->
+
+<!-- Run joint position controllers if true 
+ <group if="$(arg position)">
+    <include file="$(find time_slider_gazebo)/launch/slider_joint_position_control.launch" />
+  </group>-->
+
+ <!--
+  <node name="slider_joint_positions_node" pkg="time_slider_gazebo" type="slider_position_controller.py" output="screen" respawn="true" /> -->
+
+  <!-- Run joint torque controllers if true  
+  <group if="$(arg torque)">
+    <include file="$(find time_slider_gazebo)/launch/slider_torque_control.launch" />
+    <node name="slider_joint_torques_node" pkg="time_slider_gazebo" type="slider_torque_controller.py" output="screen" respawn="true" />
+  </group> -->
+
+  <!-- Run MPC planner and OSC if true -->
+  <group if="$(arg torque)">
+    <include file="$(find time_slider_gazebo)/launch/slider_torque_control.launch" />
+    <node name="ros_SLIDER_OSC_node" pkg="time_slider_controller" type="slider_controller_foot" output="screen" respawn="true" /> 
+    <node name="ros_SLIDER_planner_node" pkg="time_slider_controller" type="footstep_planner_2d.py" respawn="true" output="screen" />  
+    <node name="gradient_descent_footPlanner_node" pkg="time_slider_controller" type="footstep_planner_sequential_GN" output="screen" respawn="true" /> 
+  </group> 
+   
+  <!-- Run MPC planner and OSC if true -->
+  <group if="$(arg mpc)">
+    <include file="$(find time_slider_gazebo)/launch/slider_torque_control.launch" />
+    <node name="ros_SLIDER_OSC_node" pkg="time_slider_controller" type="slider_controller_foot" output="screen" respawn="true" /> 
+    <node name="ros_SLIDER_planner_node" pkg="time_slider_controller" type="slider_planner.py" respawn="true" output="screen" />  
+  </group> 
+</launch>

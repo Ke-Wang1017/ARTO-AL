@@ -1,0 +1,5 @@
+change hip to hip distance,
+
+1. left/right_offset, i.e., left/right_hip_roll y value
+2. left/right_hip_slide y value
+3. pelvis box size and its inertia

@@ -1,0 +1,134 @@
+slider_gazebo:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 1000  
+  
+  # Position Controllers ---------------------------------------
+  left_hip_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_hip_pitch
+    pid: {p: 10000.0, i: 0, d: 100.0}
+  left_hip_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_hip_roll
+    pid: {p: 10000.0, i: 0, d: 100.0}
+  left_hip_slide_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_hip_slide
+    pid: {p: 15000.0, i: 0, d: 300.0}
+  left_ankle_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_ankle_pitch
+    pid: {p: 6000.0, i: 0, d: 80.0}
+  left_ankle_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left_ankle_roll
+    pid: {p: 6000.0, i: 0, d: 80.0}
+  right_hip_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_hip_pitch
+    pid: {p: 10000.0, i: 0, d: 100.0}
+  right_hip_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_hip_roll
+    pid: {p: 10000.0, i: 0, d: 100.0}
+  right_hip_slide_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_hip_slide
+    pid: {p: 15000.0, i: 0, d: 300.0}
+  right_ankle_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_ankle_pitch
+    pid: {p: 6000.0, i: 0, d: 80.0}
+  right_ankle_roll_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right_ankle_roll
+    pid: {p: 6000.0, i: 0, d: 80.0}
+
+  # left_hip_pitch_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: left_hip_pitch
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # left_hip_roll_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: left_hip_roll
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # left_hip_slide_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: left_hip_slide
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # left_ankle_pitch_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: left_ankle_pitch
+  #   pid: {p: 00.0, i: 0, d: 0.0}
+  # left_ankle_roll_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: left_ankle_roll
+  #   pid: {p: 00.0, i: 0, d: 0.0}
+
+  # right_hip_pitch_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: right_hip_pitch
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # right_hip_roll_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: right_hip_roll
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # right_hip_slide_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: right_hip_slide
+  #   pid: {p: 0.0, i: 0, d: 0.0}
+  # right_ankle_pitch_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: right_ankle_pitch
+  #   pid: {p: 00.0, i: 0, d: 0.0}
+  # right_ankle_roll_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: right_ankle_roll
+  #   pid: {p: 00.0, i: 0, d: 0.0}
+
+
+
+  # Torque Controllers ---------------------------------------
+  left_hip_pitch_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_hip_pitch
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left_hip_roll_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_hip_roll
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left_hip_slide_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_hip_slide
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left_ankle_pitch_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_ankle_pitch
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left_ankle_roll_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: left_ankle_roll
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+    
+  right_hip_pitch_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_hip_pitch
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  right_hip_roll_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_hip_roll
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  right_hip_slide_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_hip_slide
+    pid: {p: 300.0, i: 0.01, d: 30.0}
+  right_ankle_pitch_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_ankle_pitch
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  right_ankle_roll_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: right_ankle_roll
+    pid: {p: 100.0, i: 0.01, d: 10.0}

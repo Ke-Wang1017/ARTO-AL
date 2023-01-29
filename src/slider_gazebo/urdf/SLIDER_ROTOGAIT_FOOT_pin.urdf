@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="slider_gazebo">
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>time_slider_gazebo</robotNamespace>
+    <legacyModeNS>true</legacyModeNS>
+  </plugin>
+</gazebo>
+
+<gazebo>
+  <plugin name='3dplot' filename='libLinkPlot3DPlugin.so'>
+      <!-- Update at 50 Hz -->
+      <frequency>50</frequency>
+      <!-- Upper link plot -->
+      <plot>
+        <link>time_slider_gazebo::Right_Foot</link>
+        <!-- Point 1m in +Z axis in link frame -->
+        <pose>0 0 0 0 0 0</pose>
+        <material>Gazebo/Red</material>
+      </plot>
+      <plot>
+        <link>time_slider_gazebo::Left_Foot</link>
+        <!-- Point 1m in +Z axis in link frame -->
+        <pose>0 0 0 0 0 0</pose>
+        <material>Gazebo/Red</material>
+      </plot>
+      <plot>
+        <link>time_slider_gazebo::base_link</link>
+        <!-- Point 1m in +Z axis in link frame -->
+        <pose>0 0 0.68 0 0 0</pose>
+        <material>Gazebo/Blue</material>
+      </plot>
+  </plugin>
+</gazebo>
+
+  <link name="world">
+  </link>
+  <joint name="base_joint" type="floating">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.06588 0.0011664 0.7235"
+        rpy="0 0 0" />
+      <mass
+        value="1.953" />
+      <inertia
+        ixx="0.34223"
+        ixy="-1.452E-10"
+        ixz="-1.8823E-04"
+        iyy="0.39434"
+        iyz="-3.8904E-10"
+        izz="0.47413" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+
+  <link
+    name="Left_Roll_Pitch_Link">
+    <inertial>
+      <origin
+        xyz="0.10495 -0.020898 0.00014197"
+        rpy="0 0 0" />
+      <mass
+        value="2.3674" />
+      <inertia
+        ixx="0.016216"
+        ixy="-0.0017769"
+        ixz="-4.3316E-08"
+        iyy="0.029379"
+        iyz="1.0776E-06"
+        izz="0.036208" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Roll_Pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Roll_Pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint
+    name="Left_Roll"
+    type="revolute">
+    <origin
+      xyz="-0.0648 0.1 0.69"
+      rpy="0 0 0" />
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <parent
+      link="base_link" />
+    <child
+      link="Left_Roll_Pitch_Link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Left_Pitch_Slide_Link">
+    <inertial>
+      <origin
+        xyz="0.087199 0.0083996 1.7678E-05"
+        rpy="0 0 0" />
+      <mass
+        value="1.1453" />
+      <inertia
+        ixx="0.0023497"
+        ixy="-4.2122E-05"
+        ixz="-5.2647E-08"
+        iyy="0.0020378"
+        iyz="-6.1071E-07"
+        izz="0.0012544" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Pitch_Slide_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Pitch_Slide_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Pitch"
+    type="revolute">
+    <origin
+      xyz="0.0648 0 0"
+      rpy="0 0 1.5708" />
+    <limit effort="4000.0" lower="-1.57" upper="1.57" velocity="300"/>
+    <parent
+      link="Left_Roll_Pitch_Link" />
+    <child
+      link="Left_Pitch_Slide_Link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Left_Slide_Foot_Pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.0021556 8.8219E-05 -0.23695"
+        rpy="0 0 0" />
+      <mass
+        value="0.966" />
+      <inertia
+        ixx="0.01191"
+        ixy="-4.5378E-07"
+        ixz="-4.6436E-05"
+        iyy="0.01208"
+        iyz="1.1237E-06"
+        izz="0.00099" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Slide_Foot_Pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Slide_Foot_Pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Slide"
+    type="prismatic">
+    <origin
+      xyz="0.1149 0 0"
+      rpy="0 0 -1.5708" />
+    <limit effort="4000.0" lower="-0.4" upper="0.4" velocity="300"/>
+    <parent
+      link="Left_Pitch_Slide_Link" />
+    <child
+      link="Left_Slide_Foot_Pitch_Link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Left_Foot_Pitch_Foot_Roll_Link">
+    <inertial>
+      <origin
+        xyz="2.2195E-08 1.131E-08 -1.2753E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.014128" />
+      <inertia
+        ixx="1.6051E-06"
+        ixy="6.2156E-13"
+        ixz="2.5352E-13"
+        iyy="1.5944E-06"
+        iyz="4.249E-13"
+        izz="1.5117E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Foot_Pitch_Foot_Roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Foot_Pitch_Foot_Roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Foot_Pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.6415"
+      rpy="0 0 1.5708" />
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <parent
+      link="Left_Slide_Foot_Pitch_Link" />
+    <child
+      link="Left_Foot_Pitch_Foot_Roll_Link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Left_Foot">
+    <inertial>
+      <origin
+        xyz="1.9458E-07 -0.0010335 -0.028465"
+        rpy="0 0 0" />
+      <mass
+        value="0.46537" />
+      <inertia
+        ixx="0.0065169"
+        ixy="5.2336E-09"
+        ixz="-5.453E-10"
+        iyy="0.013726"
+        iyz="2.5072E-06"
+        izz="0.020038" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Foot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Left_Foot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_Foot_Roll"
+    type="revolute">
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="Left_Foot_Pitch_Foot_Roll_Link" />
+    <child
+      link="Left_Foot" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Left_Foot_A">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_A"
+    type="fixed">
+    <origin
+      xyz="0.08225 0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Left_Foot" />
+    <child
+      link="Left_Foot_A" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="Left_Foot_B">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_B"
+    type="fixed">
+    <origin
+      xyz="-0.08225 0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Left_Foot" />
+    <child
+      link="Left_Foot_B" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+    <link
+    name="Left_Foot_C">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_C"
+    type="fixed">
+    <origin
+      xyz="0.08225 -0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Left_Foot" />
+    <child
+      link="Left_Foot_C" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+    <link
+    name="Left_Foot_D">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Left_D"
+    type="fixed">
+    <origin
+      xyz="-0.08225 -0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Left_Foot" />
+    <child
+      link="Left_Foot_D" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="Right_Roll_Pitch_Link">
+    <inertial>
+      <origin
+        xyz="0.10495 0.020898 -0.00014197"
+        rpy="0 0 0" />
+      <mass
+        value="2.3674" />
+      <inertia
+        ixx="0.016216"
+        ixy="0.0017769"
+        ixz="4.3316E-08"
+        iyy="0.029379"
+        iyz="1.0776E-06"
+        izz="0.036208" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Roll_Pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Roll_Pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Roll"
+    type="revolute">
+    <origin
+      xyz="-0.0648 -0.1 0.69"
+      rpy="0 0 0" />
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <parent
+      link="base_link" />
+    <child
+      link="Right_Roll_Pitch_Link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Right_Pitch_Slide_Link">
+    <inertial>
+      <origin
+        xyz="0.087199 -0.0083996 -1.7678E-05"
+        rpy="0 0 0" />
+      <mass
+        value="1.1453" />
+      <inertia
+        ixx="0.0023497"
+        ixy="-4.2122E-05"
+        ixz="-5.2647E-08"
+        iyy="0.0020378"
+        iyz="-6.1071E-07"
+        izz="0.0012544" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Pitch_Slide_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Pitch_Slide_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Pitch"
+    type="revolute">
+    <origin
+      xyz="0.0648 0 0"
+      rpy="0 0 -1.5708" />
+    <limit effort="4000.0" lower="-1.57" upper="1.57" velocity="300"/>
+    <parent
+      link="Right_Roll_Pitch_Link" />
+    <child
+      link="Right_Pitch_Slide_Link" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="Right_Slide_Foot_Pitch_Link">
+    <inertial>
+      <origin
+        xyz="-0.0020391 -8.6739E-05 -0.23695"
+        rpy="0 0 0" />
+      <mass
+        value="0.966" />
+      <inertia
+        ixx="0.01191"
+        ixy="-4.5378E-07"
+        ixz="-4.6436E-05"
+        iyy="0.01204"
+        iyz="1.1237E-06"
+        izz="0.00099" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Slide_Foot_Pitch_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Slide_Foot_Pitch_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Slide"
+    type="prismatic">
+    <origin
+      xyz="0.1149 0 0"
+      rpy="0 0 1.5708" />
+    <limit effort="4000.0" lower="-0.4" upper="0.4" velocity="300"/>
+    <parent
+      link="Right_Pitch_Slide_Link" />
+    <child
+      link="Right_Slide_Foot_Pitch_Link" />
+    <axis
+      xyz="0 0 1" />
+
+  </joint>
+  <link
+    name="Right_Foot_Pitch_Foot_Roll_Link">
+    <inertial>
+      <origin
+        xyz="2.2195E-08 1.131E-08 -1.2753E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.014128" />
+      <inertia
+        ixx="1.6051E-06"
+        ixy="6.2156E-13"
+        ixz="2.5352E-13"
+        iyy="1.5944E-06"
+        iyz="4.249E-13"
+        izz="1.5117E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Foot_Pitch_Foot_Roll_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Foot_Pitch_Foot_Roll_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Foot_Pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.6415"
+      rpy="0 0 1.5708" />
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <parent
+      link="Right_Slide_Foot_Pitch_Link" />
+    <child
+      link="Right_Foot_Pitch_Foot_Roll_Link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="Right_Foot">
+    <inertial>
+      <origin
+        xyz="1.9458E-07 -0.0010335 -0.028465"
+        rpy="0 0 0" />
+      <mass
+        value="0.46537" />
+      <inertia
+        ixx="0.0065169"
+        ixy="5.2336E-09"
+        ixz="-5.453E-10"
+        iyy="0.013726"
+        iyz="2.5072E-06"
+        izz="0.020038" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Foot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://time_slider_gazebo/meshes_foot/Right_Foot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_Foot_Roll"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 -1.5708" />
+    <limit effort="4000.0" lower="-0.7853" upper="0.7853" velocity="300"/>
+    <parent
+      link="Right_Foot_Pitch_Foot_Roll_Link" />
+    <child
+      link="Right_Foot" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="Right_Foot_A">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_A"
+    type="fixed">
+    <origin
+      xyz="0.08225 0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Right_Foot" />
+    <child
+      link="Right_Foot_A" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="Right_Foot_B">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_B"
+    type="fixed">
+    <origin
+      xyz="-0.08225 0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Right_Foot" />
+    <child
+      link="Right_Foot_B" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+    <link
+    name="Right_Foot_C">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_C"
+    type="fixed">
+    <origin
+      xyz="0.08225 -0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Right_Foot" />
+    <child
+      link="Right_Foot_C" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+    <link
+    name="Right_Foot_D">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-06" />
+      <inertia
+        ixx="1E-06"
+        ixy="0"
+        ixz="0"
+        iyy="1E-06"
+        iyz="0"
+        izz="1E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.01"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Right_D"
+    type="fixed">
+    <origin
+      xyz="-0.08225 -0.04905 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="Right_Foot" />
+    <child
+      link="Right_Foot_D" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+ <gazebo reference="Right_Foot_A">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Right_Foot_B">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Right_Foot_C">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Right_Foot_D">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Left_Foot_A">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Left_Foot_B">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Left_Foot_C">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+ <gazebo reference="Left_Foot_D">
+     <collision>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1000000000</mu>
+            <mu2>1000000000</mu2>
+          </ode>
+          <torsional>
+            <coefficient>10.0</coefficient>
+            <surface_radius>0.5</surface_radius>
+            <use_patch_radius>false</use_patch_radius>
+          </torsional>
+        </friction>
+      </surface>
+    </collision>
+  </gazebo>
+
+
+  <gazebo reference="Left_Foot_A">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Right_Foot_A">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Left_Foot_B">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Right_Foot_B">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Left_Foot_C">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Right_Foot_C">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Left_Foot_D">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Right_Foot_D">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Left_Foot">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+
+  <gazebo reference="Right_Foot">
+    <kp value = "8.0e+4"/>
+    <kd value = "8.0e+2"/>
+  </gazebo>
+<!-- Transmissions used for ros_control -->
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Left_Pitch">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Left_Roll">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Left_Slide">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Right_Pitch">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Right_Roll">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Right_Slide">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor6">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran7">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Left_Foot_Pitch">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor7">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Left_Foot_Roll">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor8">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Right_Foot_Pitch">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor9">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran10">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Right_Foot_Roll">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor10">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+</robot>
